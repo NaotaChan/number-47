@@ -12,6 +12,8 @@ public struct CustomerResponse
 
 }
 
+
+
 [CreateAssetMenu(fileName = "CustomerData", menuName = "Scriptable Objects/CustomerData")]
 public class CustomerData : ScriptableObject
 {
@@ -20,4 +22,9 @@ public class CustomerData : ScriptableObject
 
     [SerializeField]
     List<CustomerResponse > customerResponses = new List<CustomerResponse>();
+
+    //Getter
+    public string DialogueText { get {return dialogueText;}}
+
+    public IReadOnlyList<CustomerResponse> CustomerResponses { get { return customerResponses; } }
 }
