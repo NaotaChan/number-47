@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 658fc86bec26b844c866b24d36673c1f, type: 3}
-  m_Name: CustomerData_2
+  m_Name: Customer01_Phase01
   m_EditorClassIdentifier: Assembly-CSharp::CustomerData
-  dialogueText: This is a dialogue text test
+  customerName: Marco
+  dialogueText: Good morning! It's my first time taking this train, could you help
+    me figure out where I need to go?
   customerResponses:
-  - text: This is a text test, first response, second customer
+  - text: Of course, let me check that for you
+    stressEffect: -5
+  - text: The schedule is on the board
+    stressEffect: 0
+  - text: Please, just follow the line
     stressEffect: 5
-  - text: This is a text test, second response, second customer
-    stressEffect: 10
-  - text: This is a text test, thirdresponse, second customer
-    stressEffect: 15

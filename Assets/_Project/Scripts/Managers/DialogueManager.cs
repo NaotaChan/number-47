@@ -41,7 +41,9 @@ public class DialogueManager : MonoBehaviour
 
     void HandleResponse(int responseIndex)
     {
+        Debug.Log(customerManager.CurrentCustomer.CustomerName);
         Debug.Log(customerManager.CurrentCustomer.CustomerResponses[responseIndex].text);
+
 
             gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
             customerManager.NextCustomer();

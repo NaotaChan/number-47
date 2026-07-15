@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 658fc86bec26b844c866b24d36673c1f, type: 3}
-  m_Name: CustomerData_3
+  m_Name: Customer02_Phase01
   m_EditorClassIdentifier: Assembly-CSharp::CustomerData
-  dialogueText: This is a dialogue text test
+  customerName: Luca
+  dialogueText: Hello, I just need to renew my monthly pass. Is it possible to do
+    that here?
   customerResponses:
-  - text: This is a text test, first response, third customer
+  - text: Certainly, I'll take care of it right away
+    stressEffect: -5
+  - text: Yes, let me see your ID
+    stressEffect: 0
+  - text: Just fill out this form quickly
     stressEffect: 5
-  - text: This is a text test, second response, third customer
-    stressEffect: 10
-  - text: This is a text test, thirdresponse, third customer
-    stressEffect: 15
