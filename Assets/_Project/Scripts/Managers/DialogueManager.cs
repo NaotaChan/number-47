@@ -27,41 +27,23 @@ public class DialogueManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log(customerManager.CurrentCustomer.CustomerResponses[0].text);
-
-            gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[0].stressEffect);
-            customerManager.NextCustomer();
-
-            if(customerManager.AllCustomersServed == true)
-            {
-                return;
-            }
-            else
-            {
-                ShowCurrentCustomerDialogue();
-            }
+            HandleResponse(0);
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log(customerManager.CurrentCustomer.CustomerResponses[1].text);
-
-            gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[1].stressEffect);
-            customerManager.NextCustomer();
-
-            if(customerManager.AllCustomersServed == true)
-            {
-                return;
-            }
-            else
-            {
-                ShowCurrentCustomerDialogue();
-            }
+            HandleResponse(1);
         }
         else if(Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log(customerManager.CurrentCustomer.CustomerResponses[2].text);
+            HandleResponse(2);
+        }
+    }
 
-            gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[2].stressEffect);
+    void HandleResponse(int responseIndex)
+    {
+        Debug.Log(customerManager.CurrentCustomer.CustomerResponses[responseIndex].text);
+
+            gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
             customerManager.NextCustomer();
 
             if(customerManager.AllCustomersServed == true)
@@ -72,8 +54,8 @@ public class DialogueManager : MonoBehaviour
             {
                 ShowCurrentCustomerDialogue();
             }
-        }
-    }
+    } 
+    
 
     void ShowCurrentCustomerDialogue()
     {
