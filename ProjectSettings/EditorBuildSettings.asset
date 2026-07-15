@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/CreditsScene.unity
     guid: 8e3348b42fae0754692efce4db35dd40
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/PauseMenu.unity
     guid: e80393c8298ae2e45b3b6423ffe2a324
   - enabled: 1
