@@ -13,16 +13,17 @@ public class DialogueManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (CustomerResponse response in customerManager.CurrentCustomer.CustomerResponses)
-        {
-            Debug.Log(response.text);
-        }
+        ShowCurrentCustomerDialogue();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if(customerManager.AllCustomersServed == true)
+        {
+            return;
+        }
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -30,6 +31,15 @@ public class DialogueManager : MonoBehaviour
 
             gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[0].stressEffect);
             customerManager.NextCustomer();
+
+            if(customerManager.AllCustomersServed == true)
+            {
+                return;
+            }
+            else
+            {
+                ShowCurrentCustomerDialogue();
+            }
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -37,6 +47,15 @@ public class DialogueManager : MonoBehaviour
 
             gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[1].stressEffect);
             customerManager.NextCustomer();
+
+            if(customerManager.AllCustomersServed == true)
+            {
+                return;
+            }
+            else
+            {
+                ShowCurrentCustomerDialogue();
+            }
         }
         else if(Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -44,6 +63,23 @@ public class DialogueManager : MonoBehaviour
 
             gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[2].stressEffect);
             customerManager.NextCustomer();
+
+            if(customerManager.AllCustomersServed == true)
+            {
+                return;
+            }
+            else
+            {
+                ShowCurrentCustomerDialogue();
+            }
+        }
+    }
+
+    void ShowCurrentCustomerDialogue()
+    {
+        foreach (CustomerResponse response in customerManager.CurrentCustomer.CustomerResponses)
+        {
+            Debug.Log(response.text);
         }
     }
 }
