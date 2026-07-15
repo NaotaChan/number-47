@@ -28,9 +28,7 @@ public class MentalStateSystem
 
 
 
-
-
-
+    //Funcitons
     public void ModifyStress (int amount)
     {
         stressValue += amount;
