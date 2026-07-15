@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658fc86bec26b844c866b24d36673c1f, type: 3}
   m_Name: CustomerData
   m_EditorClassIdentifier: Assembly-CSharp::CustomerData
-  dialogueText: Place holder text
-  customerResponses: []
+  dialogueText: This is a dialogue text test
+  customerResponses:
+  - text: This is a text test, first response
+    stressEffect: 5
+  - text: This is a text test, second response
+    stressEffect: 5

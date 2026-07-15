@@ -8,12 +8,15 @@ public class CustomerManager : MonoBehaviour
     List<CustomerData> fullCustomerList = new List<CustomerData>();
 
     int currentCustomerIndex = 0;
+    bool allCustomerServed = false;
 
     [SerializeField]
     GameManager gameManager;
 
     //Getter
     public CustomerData CurrentCustomer { get {return fullCustomerList[currentCustomerIndex];}}
+
+    public bool AllCustomersServed { get { return allCustomerServed; } }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,7 +38,8 @@ public class CustomerManager : MonoBehaviour
         }
         else
         {
-            //TODO: finished customers
+            allCustomerServed = true;
+            Debug.Log("All customer served: " + allCustomerServed);
         }
     }
 }
