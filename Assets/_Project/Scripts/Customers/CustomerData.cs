@@ -21,6 +21,10 @@ public class CustomerData : ScriptableObject
     string customerName = "Sconosciuto";
 
     [SerializeField]
+    Sprite customerPortrait;
+
+
+    [SerializeField]
     string dialogueText = "Place holder text";
 
     [SerializeField]
@@ -29,5 +33,6 @@ public class CustomerData : ScriptableObject
     //Getter
     public string CustomerName { get { return customerName;}}
     public string DialogueText { get {return dialogueText;}}
+    public Sprite CustomerPortrait { get { return customerPortrait; } }
     public IReadOnlyList<CustomerResponse> CustomerResponses { get { return customerResponses; } }
 }

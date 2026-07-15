@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PauseManager : MonoBehaviour
 {
     [SerializeField]
     GameObject pausePanel;
+
+    [Header("Game UI to disable")]
+    [SerializeField] List<GameObject> gameUIObjects;
 
     bool isPaused = false;
 
@@ -28,6 +32,11 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
         pausePanel.SetActive(true);
+
+        foreach (GameObject ui in gameUIObjects)
+        {
+            ui.SetActive(false);
+        }
     }
 
     public void ResumeGame()
@@ -35,6 +44,11 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
+
+        foreach (GameObject ui in gameUIObjects)
+        {
+            ui.SetActive(true);
+        }
     }
 
     public void QuitToMenu()

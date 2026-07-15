@@ -1,13 +1,26 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-
+    [Header("Managers References")]
     [SerializeField]
     GameManager gameManager;
 
     [SerializeField]
     CustomerManager customerManager;
+
+    [Header("Customer Data")]
+    [SerializeField]
+    Image npcPortraitImage;
+
+    [Header("UI References")]
+    [SerializeField]
+    TextMeshProUGUI dialogueText;
+
+    [SerializeField]
+    Button[] responseButtons;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         
-        if(customerManager.AllCustomersServed == true)
+        /*if(customerManager.AllCustomersServed == true)
         {
             return;
         }
@@ -36,10 +49,10 @@ public class DialogueManager : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             HandleResponse(2);
-        }
+        }*/
     }
 
-    void HandleResponse(int responseIndex)
+    public void HandleResponse(int responseIndex)
     {
         Debug.Log(customerManager.CurrentCustomer.CustomerName);
         Debug.Log(customerManager.CurrentCustomer.CustomerResponses[responseIndex].text);
@@ -61,9 +74,13 @@ public class DialogueManager : MonoBehaviour
 
     void ShowCurrentCustomerDialogue()
     {
-        foreach (CustomerResponse response in customerManager.CurrentCustomer.CustomerResponses)
+        dialogueText.text = customerManager.CurrentCustomer.DialogueText;
+        npcPortraitImage.sprite = customerManager.CurrentCustomer.CustomerPortrait;
+
+        for (int i = 0; i < responseButtons.Length; i++)
         {
-            Debug.Log(response.text);
+            var buttonText = responseButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = customerManager.CurrentCustomer.CustomerResponses[i].text;
         }
     }
 }
