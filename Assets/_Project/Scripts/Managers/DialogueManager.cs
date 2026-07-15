@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -10,6 +12,13 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField]
     CustomerManager customerManager;
+
+    [Header("New System References")] 
+    [SerializeField]
+    PortraitAnimationManager portraitManager;
+
+    [SerializeField]
+    ResponseManager responseManager;
 
     [Header("Customer Data")]
     [SerializeField]
@@ -22,65 +31,64 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     Button[] responseButtons;
 
+    private Coroutine typingCoroutine;
+    private bool isTyping;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        responseManager.Hide();
         ShowCurrentCustomerDialogue();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
-        /*if(customerManager.AllCustomersServed == true)
-        {
-            return;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            HandleResponse(0);
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            HandleResponse(1);
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            HandleResponse(2);
-        }*/
     }
 
     public void HandleResponse(int responseIndex)
     {
-        Debug.Log(customerManager.CurrentCustomer.CustomerName);
-        Debug.Log(customerManager.CurrentCustomer.CustomerResponses[responseIndex].text);
+        gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
+        customerManager.NextCustomer();
 
-
-            gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
-            customerManager.NextCustomer();
-
-            if(customerManager.AllCustomersServed == true)
-            {
-                return;
-            }
-            else
-            {
-                ShowCurrentCustomerDialogue();
-            }
+        if(customerManager.AllCustomersServed == true)
+        {
+            return;
+        }
+        else
+        {
+            ShowCurrentCustomerDialogue();
+        }
     } 
     
-
     void ShowCurrentCustomerDialogue()
     {
-        dialogueText.text = customerManager.CurrentCustomer.DialogueText;
-        npcPortraitImage.sprite = customerManager.CurrentCustomer.CustomerPortrait;
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        
+        typingCoroutine = StartCoroutine(TypeDialogue(customerManager.CurrentCustomer));
+    }
 
-        for (int i = 0; i < responseButtons.Length; i++)
+    IEnumerator TypeDialogue(CustomerData customer)
+    {
+        isTyping = true;
+        responseManager.Hide();
+        dialogueText.text = "";
+
+        portraitManager.SetPortrait(customer.CustomerPortrait);
+        Coroutine animCoroutine = StartCoroutine(portraitManager.PlayAnimation(customer));
+
+        string fullText = customer.DialogueText;
+        foreach (char c in fullText)
         {
-            var buttonText = responseButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = customerManager.CurrentCustomer.CustomerResponses[i].text;
+            dialogueText.text += c;
+            yield return new WaitForSeconds(0.05f);
         }
+
+        StopCoroutine(animCoroutine);
+        portraitManager.SetPortrait(customer.animationFrames[0]);
+
+        responseManager.SetButtons(customer.CustomerResponses);
+        StartCoroutine(responseManager.FadeIn());
+
+        isTyping = false; 
     }
 }

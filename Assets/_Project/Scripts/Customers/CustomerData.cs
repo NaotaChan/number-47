@@ -21,7 +21,7 @@ public class CustomerData : ScriptableObject
     string customerName = "Sconosciuto";
 
     [SerializeField]
-    Sprite customerPortrait;
+    public List<Sprite> animationFrames;
 
 
     [SerializeField]
@@ -33,6 +33,14 @@ public class CustomerData : ScriptableObject
     //Getter
     public string CustomerName { get { return customerName;}}
     public string DialogueText { get {return dialogueText;}}
-    public Sprite CustomerPortrait { get { return customerPortrait; } }
+    public Sprite CustomerPortrait 
+    { 
+        get 
+        { 
+            if (animationFrames != null && animationFrames.Count > 0)
+                return animationFrames[0]; 
+            return null;
+        } 
+    }
     public IReadOnlyList<CustomerResponse> CustomerResponses { get { return customerResponses; } }
 }
