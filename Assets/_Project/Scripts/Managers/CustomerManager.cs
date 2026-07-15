@@ -9,6 +9,8 @@ public class CustomerManager : MonoBehaviour
 
     int currentCustomerIndex = 0;
 
+    [SerializeField]
+    GameManager gameManager;
 
     //Getter
     public CustomerData CurrentCustomer { get {return fullCustomerList[currentCustomerIndex];}}
