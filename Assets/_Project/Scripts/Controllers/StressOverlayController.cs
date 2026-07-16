@@ -11,15 +11,15 @@ public class StressOverlayController : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
 
-
-
+    const float minRadius = -0.2f;
+    const float maxRadius = 0.7f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ResetOverlayAlpha();
+        ResetOverlayRadius();
 
-        gameManager.MentalStateSystem.OnStressValueChanged += UpdateOverlayAlpha;
+        gameManager.MentalStateSystem.OnStressValueChanged += UpdateOverlayRadius;
     }
 
     // Update is called once per frame
@@ -28,17 +28,14 @@ public class StressOverlayController : MonoBehaviour
         
     }
 
-    void UpdateOverlayAlpha(int stressValue)
+    void UpdateOverlayRadius(int stressValue)
     {
-        Color c = panelStressOverlay.color;
-        c.a = (float)stressValue / 100;
-        panelStressOverlay.color = c;
+        float radius = minRadius + ((float)stressValue / 100) * (maxRadius - minRadius);
+        panelStressOverlay.material.SetFloat("_CleanRadius", radius);
     }
 
-    void ResetOverlayAlpha()
+    void ResetOverlayRadius()
     {
-        Color c = panelStressOverlay.color;  
-        c.a = 0;                              
-        panelStressOverlay.color = c; 
+        panelStressOverlay.material.SetFloat("_CleanRadius", minRadius);
     }
 }

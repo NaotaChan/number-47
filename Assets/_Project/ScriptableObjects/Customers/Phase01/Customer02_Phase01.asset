@@ -26,4 +26,4 @@ MonoBehaviour:
   - text: Yes, let me see your ID
     stressEffect: 0
   - text: Just fill out this form quickly
-    stressEffect: 50
+    stressEffect: 20
