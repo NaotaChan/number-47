@@ -15,8 +15,12 @@ public class CustomerManager : MonoBehaviour
 
     //Getter
     public CustomerData CurrentCustomer { get {return fullCustomerList[currentCustomerIndex];}}
-
     public bool AllCustomersServed { get { return allCustomerServed; } }
+    public int CurrentCustomerIndex => currentCustomerIndex;
+    public int CustomersServed => currentCustomerIndex;
+    public int TotalCustomers => fullCustomerList.Count;
+    public int CustomersRemaining => Mathf.Max(0, TotalCustomers - CustomersServed);
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

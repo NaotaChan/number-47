@@ -23,6 +23,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI dialogueText;
 
+    [Header("Counter")]
+    [SerializeField]
+    CustomerCounterUI customerCounterUI;
+    
+
 
     private Coroutine typingCoroutine;
     private bool isTyping = false;
@@ -48,6 +53,7 @@ public class DialogueManager : MonoBehaviour
     {
         gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
         customerManager.NextCustomer();
+        customerCounterUI.UpdateCounter();
 
         if(customerManager.AllCustomersServed == true)
         {
