@@ -26,4 +26,4 @@ MonoBehaviour:
   - text: The schedule is on the board
     stressEffect: 0
   - text: Please, just follow the line
-    stressEffect: 5
+    stressEffect: 30
