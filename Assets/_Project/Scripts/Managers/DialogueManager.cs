@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,19 +19,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     ResponseManager responseManager;
 
-    [Header("Customer Data")]
-    [SerializeField]
-    Image npcPortraitImage;
-
     [Header("UI References")]
     [SerializeField]
     TextMeshProUGUI dialogueText;
 
-    [SerializeField]
-    Button[] responseButtons;
 
     private Coroutine typingCoroutine;
-    private bool isTyping;
+    private bool isTyping = false;
+    private bool isSpeedingUp = false;
 
     void Start()
     {
@@ -42,9 +36,14 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        
+        CheckSpeedUpInput();
     }
 
+    private void CheckSpeedUpInput()
+    {
+        isSpeedingUp = Input.GetMouseButton(0);
+        
+    }
     public void HandleResponse(int responseIndex)
     {
         gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
@@ -80,11 +79,11 @@ public class DialogueManager : MonoBehaviour
         foreach (char c in fullText)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(isSpeedingUp ? 0.01f : 0.05f);            
         }
 
         StopCoroutine(animCoroutine);
-        portraitManager.SetPortrait(customer.animationFrames[0]);
+        portraitManager.SetPortrait(customer.CustomerPortrait);
 
         responseManager.SetButtons(customer.CustomerResponses);
         StartCoroutine(responseManager.FadeIn());
