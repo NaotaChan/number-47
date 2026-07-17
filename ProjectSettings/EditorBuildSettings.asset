@@ -9,14 +9,20 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: ed0b56ed8a6cd37429098c14624ed573
   - enabled: 1
-    path: Assets/_Project/Scenes/CreditsScene.unity
-    guid: 8e3348b42fae0754692efce4db35dd40
+    path: Assets/_Project/Scenes/IntroScene.unity
+    guid: 0b365b3e7fa1320448150fb2f945f12c
   - enabled: 0
     path: Assets/_Project/Scenes/PauseMenu.unity
     guid: e80393c8298ae2e45b3b6423ffe2a324
   - enabled: 1
     path: Assets/_Project/Scenes/MainGame.unity
     guid: 0a48b624d1f1884418a6fc10a2af24a8
+  - enabled: 1
+    path: Assets/_Project/Scenes/OutroScene.unity
+    guid: 8aa4436e35f768b4c9db8b6af9be898b
+  - enabled: 1
+    path: Assets/_Project/Scenes/CreditsScene.unity
+    guid: 8e3348b42fae0754692efce4db35dd40
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

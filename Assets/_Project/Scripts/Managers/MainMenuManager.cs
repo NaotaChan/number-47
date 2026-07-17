@@ -6,7 +6,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("IntroScene");
     }
 
     public void OpenCredits()
