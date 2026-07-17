@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
 
     MentalStateSystem mentalStateSystem = new MentalStateSystem();
+    NarrativePhaseSystem narrativePhaseSystem = new NarrativePhaseSystem();
 
 
 
