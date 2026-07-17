@@ -44,8 +44,7 @@ public class CustomerManager : MonoBehaviour
         else
         {
             allCustomerServed = true;
-            Debug.Log("All customer served: " + allCustomerServed);
-            SceneManager.LoadScene("OutroScene");
+            Debug.Log("All customer served: " + allCustomerServed);;
         }
     }
 }
