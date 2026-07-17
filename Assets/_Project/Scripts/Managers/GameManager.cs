@@ -4,16 +4,16 @@ public class GameManager : MonoBehaviour
 {
 
     MentalStateSystem mentalStateSystem = new MentalStateSystem();
-    NarrativePhaseSystem narrativePhaseSystem = new NarrativePhaseSystem();
-
-
+    NarrativePhasesSystem narrativePhaseSystem = new NarrativePhasesSystem();
 
     //Getter
     public MentalStateSystem MentalStateSystem { get {return mentalStateSystem;}}
+    public NarrativePhasesSystem NarrativePhaseSystem { get {return narrativePhaseSystem;}}
 
     void Awake()
     {
         mentalStateSystem.UpdateMentalState();
+        narrativePhaseSystem.SetPhase(NarrativePhases.Enthusiasm);
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
