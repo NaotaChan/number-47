@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class CustomerManager : MonoBehaviour
         {
             allCustomerServed = true;
             Debug.Log("All customer served: " + allCustomerServed);
+            SceneManager.LoadScene("OutroScene");
         }
     }
 }
