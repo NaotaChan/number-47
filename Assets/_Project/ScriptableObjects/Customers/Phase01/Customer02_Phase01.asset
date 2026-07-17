@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658fc86bec26b844c866b24d36673c1f, type: 3}
   m_Name: Customer02_Phase01
   m_EditorClassIdentifier: Assembly-CSharp::CustomerData
-  customerName: Luca
+  customerName: Elena
   animationFrames:
-  - {fileID: 8516612149176584854, guid: 73d412e19110587418f0086231a72579, type: 3}
-  - {fileID: -5808914241709331242, guid: 1eb0ad32849ede24dac79ce53356e627, type: 3}
-  - {fileID: -3677934032751885837, guid: d5765dab39c7e3142ab0eebbf06ebe81, type: 3}
-  - {fileID: 21300000, guid: 38fa504c837503c44a21249d3450fe91, type: 3}
+  - {fileID: -1069342036928416864, guid: fd2bb66351d86094ea61d0fa640d05b6, type: 3}
+  - {fileID: -5808914241709331242, guid: a0d98b3542dc8e84da5d5db579fbc7fd, type: 3}
+  - {fileID: 7740158631320612775, guid: 2ffa0d9ef71ab0741968b23bbeba53ef, type: 3}
+  - {fileID: 7989909952020705972, guid: f7587d261f024b4409bc473a51d97583, type: 3}
   dialogueText: Hello, I just need to renew my monthly pass. Is it possible to do
     that here?
   customerResponses:

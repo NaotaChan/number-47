@@ -22,6 +22,8 @@ public class DialogueManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField]
     TextMeshProUGUI dialogueText;
+    [SerializeField]
+    TextMeshProUGUI customerName;
 
     [Header("Counter")]
     [SerializeField]
@@ -57,6 +59,8 @@ public class DialogueManager : MonoBehaviour
 
         if(customerManager.AllCustomersServed == true)
         {
+            customerName.text = "";
+            dialogueText.text = "";
             return;
         }
         else
@@ -77,6 +81,8 @@ public class DialogueManager : MonoBehaviour
         isTyping = true;
         responseManager.Hide();
         dialogueText.text = "";
+
+        customerName.text = customer.CustomerName;
 
         portraitManager.SetPortrait(customer.CustomerPortrait);
         Coroutine animCoroutine = StartCoroutine(portraitManager.PlayAnimation(customer));
