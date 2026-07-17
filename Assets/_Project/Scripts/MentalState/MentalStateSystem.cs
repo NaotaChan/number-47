@@ -23,9 +23,11 @@ public class MentalStateSystem
     //Getter
     public MentalStates CurrentState { get {return currentState;}}
 
+    public int StressValue { get { return stressValue; } }
+
     //Events
     public event Action<MentalStates> OnMentalStateChanged;
-
+    public event Action<int> OnStressValueChanged;
 
 
     //Funcitons
@@ -34,6 +36,7 @@ public class MentalStateSystem
         stressValue += amount;
         stressValue = Mathf.Clamp(stressValue, 0, 100);
         UpdateMentalState();
+        OnStressValueChanged?.Invoke(stressValue);
     }
 
     public void UpdateMentalState()

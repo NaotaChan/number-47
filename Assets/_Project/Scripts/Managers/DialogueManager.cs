@@ -1,69 +1,99 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
-
+    [Header("Managers References")]
     [SerializeField]
     GameManager gameManager;
 
     [SerializeField]
     CustomerManager customerManager;
 
+    [Header("New System References")] 
+    [SerializeField]
+    PortraitAnimationManager portraitManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]
+    ResponseManager responseManager;
+
+    [Header("UI References")]
+    [SerializeField]
+    TextMeshProUGUI dialogueText;
+
+    [Header("Counter")]
+    [SerializeField]
+    CustomerCounterUI customerCounterUI;
+    
+
+
+    private Coroutine typingCoroutine;
+    private bool isTyping = false;
+    private bool isSpeedingUp = false;
+
     void Start()
     {
+        responseManager.Hide();
         ShowCurrentCustomerDialogue();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        CheckSpeedUpInput();
+    }
+
+    private void CheckSpeedUpInput()
+    {
+        isSpeedingUp = Input.GetMouseButton(0);
         
+    }
+    public void HandleResponse(int responseIndex)
+    {
+        gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
+        customerManager.NextCustomer();
+        customerCounterUI.UpdateCounter();
+
         if(customerManager.AllCustomersServed == true)
         {
             return;
         }
-
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        else
         {
-            HandleResponse(0);
+            ShowCurrentCustomerDialogue();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            HandleResponse(1);
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            HandleResponse(2);
-        }
-    }
-
-    void HandleResponse(int responseIndex)
-    {
-        Debug.Log(customerManager.CurrentCustomer.CustomerName);
-        Debug.Log(customerManager.CurrentCustomer.CustomerResponses[responseIndex].text);
-
-
-            gameManager.MentalStateSystem.ModifyStress(customerManager.CurrentCustomer.CustomerResponses[responseIndex].stressEffect);
-            customerManager.NextCustomer();
-
-            if(customerManager.AllCustomersServed == true)
-            {
-                return;
-            }
-            else
-            {
-                ShowCurrentCustomerDialogue();
-            }
     } 
     
-
     void ShowCurrentCustomerDialogue()
     {
-        foreach (CustomerResponse response in customerManager.CurrentCustomer.CustomerResponses)
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        
+        typingCoroutine = StartCoroutine(TypeDialogue(customerManager.CurrentCustomer));
+    }
+
+    IEnumerator TypeDialogue(CustomerData customer)
+    {
+        isTyping = true;
+        responseManager.Hide();
+        dialogueText.text = "";
+
+        portraitManager.SetPortrait(customer.CustomerPortrait);
+        Coroutine animCoroutine = StartCoroutine(portraitManager.PlayAnimation(customer));
+
+        string fullText = customer.DialogueText;
+        foreach (char c in fullText)
         {
-            Debug.Log(response.text);
+            dialogueText.text += c;
+            yield return new WaitForSeconds(isSpeedingUp ? 0.01f : 0.05f);            
         }
+
+        StopCoroutine(animCoroutine);
+        portraitManager.SetPortrait(customer.CustomerPortrait);
+
+        responseManager.SetButtons(customer.CustomerResponses);
+        StartCoroutine(responseManager.FadeIn());
+
+        isTyping = false; 
     }
 }
