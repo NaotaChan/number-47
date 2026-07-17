@@ -71,7 +71,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CleanRadius: 0.42999998
+    - _CleanRadius: 0.24999999
     - _EnableExternalAlpha: 0
     - _Feather: 0.15
     - _QueueControl: 0

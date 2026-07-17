@@ -16,8 +16,7 @@ public class CustomerCounterUI : MonoBehaviour
 
     public void UpdateCounter()
     {
-        counterText.text =
-            $"{customerManager.CustomersServed} / {customerManager.TotalCustomers}";
+        counterText.text = $"{customerManager.CustomersServed}\n ________ \n {customerManager.TotalCustomers}";
     }
 
     // Update is called once per frame
