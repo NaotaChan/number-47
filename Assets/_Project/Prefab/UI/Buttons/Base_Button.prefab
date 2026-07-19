@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5233586978321906402}
   - component: {fileID: 5362933049298705056}
   - component: {fileID: 9131469200088428612}
+  - component: {fileID: 4204534831907998384}
   m_Layer: 5
   m_Name: Base_Button
   m_TagString: Untagged
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -123.1}
-  m_SizeDelta: {x: 530, y: 94}
+  m_SizeDelta: {x: 280, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5233586978321906402
 CanvasRenderer:
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 777247733377907214, guid: 6d5731f2977d2bc4897aa15650eec886, type: 3}
+  m_Sprite: {fileID: 7727920520835908519, guid: 6b1a69169238d104296518de29151f22, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -133,6 +134,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4204534831907998384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6092885772680355528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e8c820be5e9184e9808f2df3e4bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonVisualFeedback
+  buttonText: {fileID: 5007270555150819871}
+  normalMaterial: {fileID: -7244107466074408135, guid: 2a0e7cf74b82ee44a86c9f220fd2bd67, type: 2}
+  glowMaterial: {fileID: 2100000, guid: ec6e948258923fd40af99e66529b7076, type: 2}
+  hoverScale: 1.03
 --- !u!1 &8162864059271673551
 GameObject:
   m_ObjectHideFlags: 0
