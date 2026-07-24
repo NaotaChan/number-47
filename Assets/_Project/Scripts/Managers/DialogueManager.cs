@@ -59,6 +59,7 @@ public class DialogueManager : MonoBehaviour
 
         if(customerManager.AllCustomersServed == true)
         {
+            Debug.Log($"Tutti i clienti serviti. Totale in lista: {customerManager.TotalCustomers}, indice attuale: {customerManager.CurrentCustomerIndex}");
             customerName.text = "";
             dialogueText.text = "";
             return;
